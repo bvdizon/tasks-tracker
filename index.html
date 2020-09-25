@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon-todos.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <title>Admin Team</title>
+    <style>
+        .wrapper {
+            max-width: 1700px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrapper">
+        <h1 class="my-3 text-center">Tasks Tracker</h1>
+        <div class="my-5 col-lg-4 offset-lg-4 col-lg-col-sm-12">
+            <!-- <div id="messageAlert" class="alert text-center d-none" role="alert"></div>      -->
+            <form id="addForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="notes" aria-describedby="emailHelp"
+                        placeholder="Add some notes ...">
+                </div>
+                <div class="form-group">
+                    <select id="owner" class="custom-select" placeholder="something">
+                        <option value="default"></option>
+                        <option value="Admin Team">Admin Team</option>
+                        <option value="Chris Duffy">Chris Duffy</option>
+                        <option value="Christopher Audette">Christopher Audette</option>
+                        <option value="Frank Liu">Frank Liu</option>
+                        <option value="Jen Johnson">Jen Johnson</option>
+                        <option value="Maria Shettler">Maria Shettler</option>
+                        <option value="May D, Curtis K.">May D, Curtis K.</option>
+                        <option value="Mike Litorco">Mike Litorco</option>
+                        <option value="Sarah Walczak">Sarah Walczak</option>
+                        <option value="Will Vo">Will Vo</option>
+                        <option value="Referral Agent">Referral Agent</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="activityType" class="custom-select">
+                        <option value="default" placeholder="something"></option>
+                        <option value="Ad-hoc Task">Ad-hoc Task</option>
+                        <option value="Conveyancing">Conveyancing</option>
+                        <option value="Filing - Expenses">Filing - Expenses</option>
+                        <option value="Filing - Income">Filing - Income</option>
+                        <option value="Leads Management">Leads Management</option>
+                        <option value="Leads Management - ISA">Leads Management - ISA</option>
+                        <option value="Listing Emails">Listing Emails</option>
+                        <option value="Listing Task">Listing Task</option>
+                        <option value="New Deal - Agent Double-Ender">New Deal - Agent Double-Ender</option>
+                        <option value="New Deal - Buyer Side">New Deal - Buyer Side</option>
+                        <option value="New Deal - Referral">New Deal - Referral</option>
+                        <option value="New Deal - Seller Side">New Deal - Seller Side</option>
+                        <option value="New Listing">New Listing</option>
+                        <option value="Reports">Reports</option>
+                        <option value="Review Request Email">Review Request Email</option>
+                        <option value="Social Media Task">Social Media Task</option>
+                    </select>
+                </div>
+                <button type="submit" id="addTask" class="btn btn-outline-primary btn-block btn-lg">Add this to
+                    Tasks</button>
+            </form>
+        </div>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Activity</th>
+                    <th scope="col">Notes</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col">Manage</th>
+                </tr>
+            </thead>
+            <tbody id="tasksList"></tbody>
+        </table>
+
+    </main>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCMR-h04L3I71W3IOxq7af3r-_uhES-EM8",
+            authDomain: "the-group---tasks-tracker.firebaseapp.com",
+            databaseURL: "https://the-group---tasks-tracker.firebaseio.com",
+            projectId: "the-group---tasks-tracker",
+            storageBucket: "the-group---tasks-tracker.appspot.com",
+            messagingSenderId: "1013793128046",
+            appId: "1:1013793128046:web:7920ad7ec0bb2a3e2f707f"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
