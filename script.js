@@ -20,13 +20,12 @@ const readTasks = data => {
         `;
 
     tr.innerHTML = trElements;
-    document.getElementById('tasksList').prepend(tr);
+    document.getElementById('tasksList').append(tr);
 };
 
 
 let activityAlert = (message, className) => {
     let alertPrompt = `<div id="messageAlert" class="alert ${className} text-center my-3" role="alert">${message}</div>`
-
     addForm.insertAdjacentHTML('afterend', alertPrompt);
 
     setTimeout(() => {
@@ -36,7 +35,7 @@ let activityAlert = (message, className) => {
 
 
 // READ data from Firebase-Firestore in Real-time
-db.collection('tasks').orderBy('date').limit(25)
+db.collection('tasks').orderBy('date', 'desc').limit(25)
     .onSnapshot(snapshot => {
         let changes = snapshot.docChanges();
         changes.forEach(change => {
@@ -70,13 +69,12 @@ addForm.addEventListener('submit', e => {
     }
 });
 
-
+// DELETE data from the list and from Firebase-Firestore
 tasksList.addEventListener('click', e => {
     if(e.target.classList.contains('delete')) {
         const dataID = e.target.parentElement.parentElement.getAttribute('data-id');
         db.collection('tasks').doc(dataID).delete();
-        e.target.parentElement.parentElement.remove();
-        
+        e.target.parentElement.parentElement.remove();        
     }
 }); 
 
