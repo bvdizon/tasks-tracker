@@ -1,0 +1,11 @@
+.table-sm th,
+.table-sm td {
+    padding: 0.5rem;
+    font-size: 14px;
+}
+
+i.delete,
+i.edit {
+    cursor: pointer;
+    padding: 0 5px;
+}
