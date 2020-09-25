@@ -36,7 +36,7 @@ let activityAlert = (message, className) => {
 
 
 // READ data from Firebase-Firestore in Real-time
-db.collection('tasks').orderBy('date', 'desc').limit(25)
+db.collection('tasks').orderBy('date').limit(25)
     .onSnapshot(snapshot => {
         let changes = snapshot.docChanges();
         changes.forEach(change => {
