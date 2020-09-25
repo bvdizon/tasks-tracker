@@ -20,7 +20,7 @@ const readTasks = data => {
         `;
 
     tr.innerHTML = trElements;
-    document.getElementById('tasksList').append(tr);
+    document.getElementById('tasksList').prepend(tr);
 };
 
 
