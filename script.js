@@ -34,7 +34,10 @@ let activityAlert = (message, className) => {
 
 
 // READ data from Firebase-Firestore in Real-time
-db.collection('tasks').orderBy('date', 'desc').limit(10)
+const filterDate = new Date('09/26/2020');
+const filterActivity = 'Conveyancing';
+
+db.collection('tasks').orderBy('date', 'desc').limit(5)
     .onSnapshot(snapshot => {
         let changes = snapshot.docChanges();
         changes.forEach(change => {
@@ -78,3 +81,38 @@ tasksList.addEventListener('click', e => {
         });
     }
 }); 
+
+
+/* ==================== */
+// SEARCH or QUERY to Firebase-Firestore
+const searchForm = document.getElementById('searchForm');
+
+searchForm.addEventListener('submit', e => {
+    e.preventDefault();    
+    tasksList.innerHTML = "";
+
+    if(searchForm.activityTypeSearch.value !== 'default' && searchForm.search_date.value !== "") {
+        let search_date = new Date(searchForm.search_date.value);
+        db.collection('tasks')
+            .orderBy('date', 'desc')
+            .where('date', '>=', search_date)
+            .where('activity', '==', activityTypeSearch.value)
+            .get().then(snapshot => {
+            snapshot.docs.forEach(doc => {
+                readTasks(doc)
+            })            
+        })
+    } else {
+        let search_date = new Date(searchForm.search_date.value);
+        db.collection('tasks')
+            .orderBy('date', 'desc')
+            .where('date', '>', search_date)
+            .get().then(snapshot => {
+            snapshot.docs.forEach(doc => {
+                readTasks(doc)
+            })            
+        })
+    }
+
+
+})
