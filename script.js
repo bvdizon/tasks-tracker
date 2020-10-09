@@ -27,9 +27,9 @@ const readTasks = data => {
 
 let activityAlert = (message, className) => {
     let alertPrompt = `<div id="messageAlert" class="alert ${className} text-center my-3" role="alert">${message}</div>`
-    addForm.insertAdjacentHTML('afterend', alertPrompt);    
+    document.getElementById('tasks_input').insertAdjacentHTML('beforebegin', alertPrompt);    
     setTimeout(() => { document.getElementById('messageAlert').remove(); }, 2000);
-    setTimeout(() => { location.reload() }, 2100);
+    // setTimeout(() => { location.reload() }, 2100);
 }
 
 

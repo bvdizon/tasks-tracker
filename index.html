@@ -1,179 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="favicon-todos.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-        crossorigin="anonymous" />
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon-todos.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Admin Team</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <main class="container">
-        <h1 class="display-5 my-3 text-center">Tasks Tracker</h1>
-        <div class="row">
-            <div class="my-5 col-lg-6 col-sm-12">
-                <form id="addForm">
-                    <div class="form-group">
-                        <select id="owner" class="custom-select" placeholder="something">
-                            <option value="default">select owner</option>
-                            <option value="Admin Team">Admin Team</option>
-                            <option value="Chris Duffy">Chris Duffy</option>
-                            <option value="Christopher Audette">Christopher Audette</option>
-                            <option value="Frank Liu">Frank Liu</option>
-                            <option value="Jen Johnson">Jen Johnson</option>
-                            <option value="Maria Shettler">Maria Shettler</option>
-                            <option value="May D, Curtis K.">May D, Curtis K.</option>
-                            <option value="Mike Litorco">Mike Litorco</option>
-                            <option value="Sarah Walczak">Sarah Walczak</option>
-                            <option value="Will Vo">Will Vo</option>
-                            <option value="Referral Agent">Referral Agent</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select id="activityType" class="custom-select">
-                            <option value="default">select activity type</option>
-                            <option value="Ad-hoc Task">Ad-hoc Task</option>
-                            <option value="Conveyancing">Conveyancing</option>
-                            <option value="Filing - Expenses">Filing - Expenses</option>
-                            <option value="Filing - Income">Filing - Income</option>
-                            <option value="Leads Management">Leads Management</option>
-                            <option value="Leads Management - ISA">Leads Management - ISA</option>
-                            <option value="Listing Emails">Listing Emails</option>
-                            <option value="Listing Task">Listing Task</option>
-                            <option value="New Deal - Agent Double-Ender">New Deal - Agent Double-Ender</option>
-                            <option value="New Deal - Buyer Side">New Deal - Buyer Side</option>
-                            <option value="New Deal - Referral">New Deal - Referral</option>
-                            <option value="New Deal - Seller Side">New Deal - Seller Side</option>
-                            <option value="New Listing">New Listing</option>
-                            <option value="Reports">Reports</option>
-                            <option value="Review Request Email">Review Request Email</option>
-                            <option value="Social Media Task">Social Media Task</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="notes" aria-describedby="emailHelp"
-                            placeholder="Add some notes ...">
-                    </div>                              
-                    <div class="text-center">
-                        <button id="add_task"class="btn btn-outline-danger btn-lg">Add this task</button>
-                    </div>         
-                </form>
+      <h1 class="display-5 my-3 text-center">Tasks Tracker</h1>
+      <div class="row" id="tasks_input">
+        <div class="my-5 col-lg-6 col-sm-12">
+          <form id="addForm">
+            <div class="form-group">
+              <select id="owner" class="custom-select" placeholder="something">
+                <option value="default">select owner</option>
+                <option value="Admin Team">Admin Team</option>
+                <option value="Chris Duffy">Chris Duffy</option>
+                <option value="Christopher Audette">Christopher Audette</option>
+                <option value="Frank Liu">Frank Liu</option>
+                <option value="Jen Johnson">Jen Johnson</option>
+                <option value="Maria Shettler">Maria Shettler</option>
+                <option value="May D, Curtis K.">May D, Curtis K.</option>
+                <option value="Mike Litorco">Mike Litorco</option>
+                <option value="Sarah Walczak">Sarah Walczak</option>
+                <option value="Will Vo">Will Vo</option>
+                <option value="Referral Agent">Referral Agent</option>
+              </select>
             </div>
-            <div class="my-5 col-lg-6 col-sm-12">
-                <form id="searchForm">
-                    <div class="form-group">
-                        <input type="date" name="search_date" id="search_date" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <select id="ownerSearch" class="custom-select" placeholder="something">
-                            <option value="default">select owner</option>
-                            <option value="Admin Team">Admin Team</option>
-                            <option value="Chris Duffy">Chris Duffy</option>
-                            <option value="Christopher Audette">Christopher Audette</option>
-                            <option value="Frank Liu">Frank Liu</option>
-                            <option value="Jen Johnson">Jen Johnson</option>
-                            <option value="Maria Shettler">Maria Shettler</option>
-                            <option value="May D, Curtis K.">May D, Curtis K.</option>
-                            <option value="Mike Litorco">Mike Litorco</option>
-                            <option value="Sarah Walczak">Sarah Walczak</option>
-                            <option value="Will Vo">Will Vo</option>
-                            <option value="Referral Agent">Referral Agent</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select id="activityTypeSearch" class="custom-select">
-                            <option value="default">select activity type</option>
-                            <option value="Ad-hoc Task">Ad-hoc Task</option>
-                            <option value="Conveyancing">Conveyancing</option>
-                            <option value="Filing - Expenses">Filing - Expenses</option>
-                            <option value="Filing - Income">Filing - Income</option>
-                            <option value="Leads Management">Leads Management</option>
-                            <option value="Leads Management - ISA">Leads Management - ISA</option>
-                            <option value="Listing Emails">Listing Emails</option>
-                            <option value="Listing Task">Listing Task</option>
-                            <option value="New Deal - Agent Double-Ender">New Deal - Agent Double-Ender</option>
-                            <option value="New Deal - Buyer Side">New Deal - Buyer Side</option>
-                            <option value="New Deal - Referral">New Deal - Referral</option>
-                            <option value="New Deal - Seller Side">New Deal - Seller Side</option>
-                            <option value="New Listing">New Listing</option>
-                            <option value="Reports">Reports</option>
-                            <option value="Review Request Email">Review Request Email</option>
-                            <option value="Social Media Task">Social Media Task</option>
-                        </select>
-                    </div> 
-                    <div class="text-center">
-                        <button id="search_tasks"class="btn btn-outline-danger btn-lg">Search tasks</button>
-                    </div>
-                </form>
+            <div class="form-group">
+              <select id="activityType" class="custom-select">
+                <option value="default">select activity type</option>
+                <option value="Ad-hoc Task">Ad-hoc Task</option>
+                <option value="Conveyancing">Conveyancing</option>
+                <option value="Filing - Expenses">Filing - Expenses</option>
+                <option value="Filing - Income">Filing - Income</option>
+                <option value="Leads Management">Leads Management</option>
+                <option value="Leads Management - ISA">
+                  Leads Management - ISA
+                </option>
+                <option value="Listing Emails">Listing Emails</option>
+                <option value="Listing Task">Listing Task</option>
+                <option value="New Deal - Agent Double-Ender">
+                  New Deal - Agent Double-Ender
+                </option>
+                <option value="New Deal - Buyer Side">
+                  New Deal - Buyer Side
+                </option>
+                <option value="New Deal - Referral">New Deal - Referral</option>
+                <option value="New Deal - Seller Side">
+                  New Deal - Seller Side
+                </option>
+                <option value="New Listing">New Listing</option>
+                <option value="Reports">Reports</option>
+                <option value="Review Request Email">
+                  Review Request Email
+                </option>
+                <option value="Social Media Task">Social Media Task</option>
+              </select>
             </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="notes"
+                aria-describedby="emailHelp"
+                placeholder="Add some notes ..."
+              />
+            </div>
+            <div class="text-center">
+              <button id="add_task" class="btn btn-outline-danger btn-lg">
+                Add this task
+              </button>
+            </div>
+          </form>
         </div>
+        <div class="my-5 col-lg-6 col-sm-12">
+          <form id="searchForm">
+            <div class="form-group">
+              <input
+                type="date"
+                name="search_date"
+                id="search_date"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <select
+                id="ownerSearch"
+                class="custom-select"
+                placeholder="something"
+              >
+                <option value="default">select owner</option>
+                <option value="Admin Team">Admin Team</option>
+                <option value="Chris Duffy">Chris Duffy</option>
+                <option value="Christopher Audette">Christopher Audette</option>
+                <option value="Frank Liu">Frank Liu</option>
+                <option value="Jen Johnson">Jen Johnson</option>
+                <option value="Maria Shettler">Maria Shettler</option>
+                <option value="May D, Curtis K.">May D, Curtis K.</option>
+                <option value="Mike Litorco">Mike Litorco</option>
+                <option value="Sarah Walczak">Sarah Walczak</option>
+                <option value="Will Vo">Will Vo</option>
+                <option value="Referral Agent">Referral Agent</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select id="activityTypeSearch" class="custom-select">
+                <option value="default">select activity type</option>
+                <option value="Ad-hoc Task">Ad-hoc Task</option>
+                <option value="Conveyancing">Conveyancing</option>
+                <option value="Filing - Expenses">Filing - Expenses</option>
+                <option value="Filing - Income">Filing - Income</option>
+                <option value="Leads Management">Leads Management</option>
+                <option value="Leads Management - ISA">
+                  Leads Management - ISA
+                </option>
+                <option value="Listing Emails">Listing Emails</option>
+                <option value="Listing Task">Listing Task</option>
+                <option value="New Deal - Agent Double-Ender">
+                  New Deal - Agent Double-Ender
+                </option>
+                <option value="New Deal - Buyer Side">
+                  New Deal - Buyer Side
+                </option>
+                <option value="New Deal - Referral">New Deal - Referral</option>
+                <option value="New Deal - Seller Side">
+                  New Deal - Seller Side
+                </option>
+                <option value="New Listing">New Listing</option>
+                <option value="Reports">Reports</option>
+                <option value="Review Request Email">
+                  Review Request Email
+                </option>
+                <option value="Social Media Task">Social Media Task</option>
+              </select>
+            </div>
+            <div class="text-center">
+              <button id="search_tasks" class="btn btn-outline-danger btn-lg">
+                Search tasks
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
 
-        <table class="table table-striped table-sm table-bordered table-hover">
-            <thead>
-                <tr class="bg-primary">
-                    <th class="text-light text-center" scope="col">Date</th>
-                    <th class="text-light text-center" scope="col">Activity</th>
-                    <th class="text-light text-center" scope="col">Notes</th>
-                    <th class="text-light text-center" scope="col">Owner</th>
-                    <th class="text-light text-center" scope="col">Manage</th>
-                </tr>
-            </thead>
-            <tbody id="tasksList"></tbody>
-        </table>
+      <table class="table table-striped table-sm table-bordered table-hover">
+        <thead>
+          <tr class="bg-primary">
+            <th class="text-light text-center" scope="col">Date</th>
+            <th class="text-light text-center" scope="col">Activity</th>
+            <th class="text-light text-center" scope="col">Notes</th>
+            <th class="text-light text-center" scope="col">Owner</th>
+            <th class="text-light text-center" scope="col">Manage</th>
+          </tr>
+        </thead>
+        <tbody id="tasksList"></tbody>
+      </table>
     </main>
 
     <!-- Modal -->
-    <div class="modal fade" id="deletePrompt" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete this task?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="modalBodyMessage">
-                    Task Name
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Forget it.</button>
-                    <button type="button" class="btn btn-primary" id="deleteTaskBtn" data-dismiss="modal">Yes. I am sure.</button>
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="deletePrompt"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Delete this task?
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="modalBodyMessage">Task Name</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Forget it.
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="deleteTaskBtn"
+              data-dismiss="modal"
+            >
+              Yes. I am sure.
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
 
     <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCMR-h04L3I71W3IOxq7af3r-_uhES-EM8",
-            authDomain: "the-group---tasks-tracker.firebaseapp.com",
-            databaseURL: "https://the-group---tasks-tracker.firebaseio.com",
-            projectId: "the-group---tasks-tracker",
-            storageBucket: "the-group---tasks-tracker.appspot.com",
-            messagingSenderId: "1013793128046",
-            appId: "1:1013793128046:web:7920ad7ec0bb2a3e2f707f"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: 'AIzaSyCMR-h04L3I71W3IOxq7af3r-_uhES-EM8',
+        authDomain: 'the-group---tasks-tracker.firebaseapp.com',
+        databaseURL: 'https://the-group---tasks-tracker.firebaseio.com',
+        projectId: 'the-group---tasks-tracker',
+        storageBucket: 'the-group---tasks-tracker.appspot.com',
+        messagingSenderId: '1013793128046',
+        appId: '1:1013793128046:web:7920ad7ec0bb2a3e2f707f',
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
     </script>
 
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
